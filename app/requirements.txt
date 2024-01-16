@@ -1,0 +1,6 @@
+flask
+simplepyble
+pygame
+pygobject
+RPi.GPIO
+gunicorn

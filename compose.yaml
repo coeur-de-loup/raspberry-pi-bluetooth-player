@@ -1,0 +1,19 @@
+services:
+  web: 
+    build:
+      context: app
+      target: builder
+    # flask requires SIGINT to stop gracefully
+    # (default stop signal from Compose is SIGTERM)
+    stop_signal: SIGINT
+    volumes:
+      - ./app:/app
+      - /:/host
+      - /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket
+
+    environment:
+      - FLASK_ENV=production
+      - FLASK_RUN_EXTRA_FILES=/app/*.py
+      - PULSE_SERVER=tcp:localhost:4713
+    network_mode: "host"
+    privileged: true

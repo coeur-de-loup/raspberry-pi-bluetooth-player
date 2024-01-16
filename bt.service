@@ -1,0 +1,14 @@
+[Unit]
+Description=Start the flask app for bluetooth pairing and music playing
+After=docker.service network-online.target
+Wants=docker.service
+
+[Service]
+WorkingDirectory=/home/pi/Dev/flask
+ExecStart=/usr/bin/docker compose up
+ExecStop=/usr/bin/docker compose down
+User=pi
+Type=simple 
+
+[Install]
+WantedBy=multi-user.target
