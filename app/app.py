@@ -1,7 +1,6 @@
 from logging.config import stopListening
 from tokenize import StopTokenizing
 from flask import Flask
-from test import get_connectables
 import logging
 import time
 from leds import controls
@@ -113,10 +112,6 @@ def long_press():
         pair()
     return "long press"
 
-
-@app.route('/connect')
-def t():
-	return get_connectables()
 
 bouton = bouton()
 
