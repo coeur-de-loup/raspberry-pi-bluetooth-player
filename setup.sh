@@ -1,4 +1,6 @@
 #!/bin/bash
+sudo apt-get install git -y
+
 cd ~
 echo "Cloning raspberry-pi-bluetooth-player repo"
 mkdir -p ~/btplayer
