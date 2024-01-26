@@ -1,6 +1,6 @@
 #!/usr/bin/expect
 
 spawn bluetoothctl
-sleep 2
+sleep 10
 send "exit\r"
 expect eof
