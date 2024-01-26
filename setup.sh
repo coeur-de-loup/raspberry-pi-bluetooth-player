@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo apt-get install git -y
+#sudo apt-get install git -y
 
 # cd ~
 # echo "Cloning raspberry-pi-bluetooth-player repo"
@@ -10,9 +10,9 @@ sudo apt-get install git -y
 
 
 # Install dependencies
-echo "Installing dependencies..."
-sudo apt-get update
-sudo apt upgrade -y
+# echo "Installing dependencies..."
+# sudo apt-get update
+# sudo apt upgrade -y
 
 echo "Downloading Docker..."
 curl -fsSL https://get.docker.com -o get-docker.sh
