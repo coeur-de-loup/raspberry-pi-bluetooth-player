@@ -10,7 +10,6 @@ services:
       - ./app:/app
       - /:/host
       - /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket
-      - /var/lib/bluetooth/:/var/lib/bluetooth/
 
     environment:
       - FLASK_ENV=production
