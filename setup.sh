@@ -28,6 +28,7 @@ echo "load-module module-native-protocol-tcp auth-anonymous=1" | sudo tee -a /et
 
 echo "Enable pulseaudio service"
 systemctl --user enable pulseaudio
+systemctl --user start pulseaudio
 
 
 echo "Building flask container..."
