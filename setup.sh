@@ -1,10 +1,12 @@
 #!/bin/bash
 sudo apt-get install git -y
 
-cd ~
-echo "Cloning raspberry-pi-bluetooth-player repo"
-mkdir -p ~/btplayer
-git clone https://github.com/coeur-de-loup/raspberry-pi-bluetooth-player.git ~/btplayer
+# cd ~
+# echo "Cloning raspberry-pi-bluetooth-player repo"
+# mkdir -p ~/btplayer
+# git clone https://github.com/coeur-de-loup/raspberry-pi-bluetooth-player.git ~/btplayer
+# chmod +x ~/btplayer/setup.sh
+# sudo sh setup.sh
 
 
 # Install dependencies
