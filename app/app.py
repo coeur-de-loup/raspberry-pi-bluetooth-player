@@ -17,9 +17,10 @@ import threading
 
 
 
+
 app = Flask(__name__)
 led = controls.getLedController()
-led.set('fast_green')
+led.set('slow_green')
 player = play.Player()
 
 
@@ -130,17 +131,18 @@ def graceful_exit(signum, frame):
     sys.exit(0)
 
 def call_play():
-    time.sleep(2)  # Attendre que le serveur Flask démarre
-    response = requests.get('http://localhost:8000/play')
-    print(response.text)
+    time.sleep(5)
+    response = requests.get('http://localhost:8000/short_press')
+
+
+t = threading.Thread(target=call_play)
+t.daemon = True
+t.start()
 
 signal.signal(signal.SIGTERM, graceful_exit)
 signal.signal(signal.SIGINT, graceful_exit)
 
 if __name__ == '__main__':
-    # Création d'un thread pour appeler la fonction /play
-    thread = threading.Thread(target=call_play)
-    thread.start()
-
     app.run(host='0.0.0.0', port=8000)
+    
     #app.run(host='0.0.0.0', port=8000, debug=True, use_reloader=False)
