@@ -17,3 +17,16 @@ services:
       - PULSE_SERVER=tcp:localhost:4713
     network_mode: "host"
     privileged: true
+  ngrok:
+    image: ngrok/ngrok:latest
+    restart: unless-stopped
+    command:
+      - "start"
+      - "--all"
+      - "--config"
+      - "/etc/ngrok.yml"
+    depends_on:
+      - web
+    volumes:
+      - ./ngrok/ngrok.yml:/etc/ngrok.yml
+    network_mode: "host"
