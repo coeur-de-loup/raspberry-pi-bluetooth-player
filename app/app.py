@@ -17,8 +17,9 @@ import os
 
 app = Flask(__name__)
 led = controls.getLedController()
-led.set('slow_green')
-player = play.Player()
+led.set('fast_green')
+play()
+
 
 
 app.logger.setLevel(logging.DEBUG)
