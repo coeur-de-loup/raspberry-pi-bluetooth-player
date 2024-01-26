@@ -131,8 +131,9 @@ def graceful_exit(signum, frame):
     sys.exit(0)
 
 def call_play():
+    
     time.sleep(5)
-    response = requests.get('http://localhost:8000/short_press')
+    #response = requests.get('http://localhost:8000/long_press')
 
 
 t = threading.Thread(target=call_play)

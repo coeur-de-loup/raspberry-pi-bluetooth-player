@@ -84,8 +84,18 @@ def scan_for_devices():
 
         def scan_found(peripheral):
             logging.info(f"Found {peripheral.identifier()} [{peripheral.address()}] connectable:{peripheral.is_connectable()}")
-            if  peripheral.is_connectable():
+            if peripheral.address() == "[B0:F0:0C:0D:FD:28]":
+                logging.info("FOUND SOUNDCORE HEADPHONES [B0:F0:0C:0D:FD:28]")
+            if peripheral.address() == "B0:F0:0C:0D:FD:28":
+                logging.info("FOUND SOUNDCORE HEADPHONES B0:F0:0C:0D:FD:28")
+                logging.info(peripheral.is_connectable())
+            else:
+                logging.info(peripheral.address())
+            
+            if  peripheral.is_connectable() and peripheral.address() == "B0:F0:0C:0D:FD:28":
+                logging.info(f"Connecting to {peripheral.address()}")
                 connect(peripheral)
+                time.sleep(5)
                 global interrupted
                 interrupted = True
 
