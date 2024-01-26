@@ -11,6 +11,8 @@ import sys
 from bt import scan
 from play import play
 import os
+import requests
+import threading
 
 
 
@@ -18,8 +20,7 @@ import os
 app = Flask(__name__)
 led = controls.getLedController()
 led.set('fast_green')
-play()
-
+player = play.Player()
 
 
 app.logger.setLevel(logging.DEBUG)
@@ -128,9 +129,18 @@ def graceful_exit(signum, frame):
     # Then exit
     sys.exit(0)
 
+def call_play():
+    time.sleep(2)  # Attendre que le serveur Flask démarre
+    response = requests.get('http://localhost:8000/play')
+    print(response.text)
+
 signal.signal(signal.SIGTERM, graceful_exit)
 signal.signal(signal.SIGINT, graceful_exit)
 
 if __name__ == '__main__':
+    # Création d'un thread pour appeler la fonction /play
+    thread = threading.Thread(target=call_play)
+    thread.start()
+
     app.run(host='0.0.0.0', port=8000)
     #app.run(host='0.0.0.0', port=8000, debug=True, use_reloader=False)

@@ -4,3 +4,4 @@ pygame
 pygobject
 RPi.GPIO
 gunicorn
+requests
