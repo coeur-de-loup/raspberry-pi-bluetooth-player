@@ -8,7 +8,7 @@ from bouton.bouton import bouton
 logging.basicConfig(level=logging.DEBUG)
 import signal
 import sys
-from bt import scan
+#from bt import scan
 from play import play
 import os
 import requests
@@ -55,7 +55,7 @@ def stop():
 def pair():
     current_state['state'] = 'pairing'
     slow_blue()
-    scan.scan_for_devices()
+    #scan.scan_for_devices()
     fast_blue()
     time.sleep(2)
     stop()
