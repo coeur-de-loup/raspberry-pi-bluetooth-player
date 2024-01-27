@@ -136,9 +136,9 @@ def call_play():
     #response = requests.get('http://localhost:8000/long_press')
 
 
-t = threading.Thread(target=call_play)
-t.daemon = True
-t.start()
+# t = threading.Thread(target=call_play)
+# t.daemon = True
+# t.start()
 
 signal.signal(signal.SIGTERM, graceful_exit)
 signal.signal(signal.SIGINT, graceful_exit)
