@@ -9,6 +9,7 @@ logging.basicConfig(level=logging.DEBUG, format='[%(levelname)s] (%(threadName)-
 class Player:
     def __init__(self):
         self.current_track = None
+        self.blank_track = None
         self.playback_thread = None
         self.playback_process = None
 
@@ -19,14 +20,19 @@ class Player:
         self.current_track = filename
         return True
 
+    def load_blank(self, filename):
+        if not os.path.exists(filename):
+            logging.error(f"Blank file not found: {filename}")
+            return False
+        self.blank_track = filename
+        return True
+
     def play(self):
         logging.info('play')
         if self.current_track is not None:
-            # Stop existing playback if it's running
             if self.playback_process and self.playback_process.poll() is None:
                 self.stop()
 
-            # Start a new playback thread
             self.playback_thread = threading.Thread(target=self._playback)
             self.playback_thread.start()
 
@@ -42,9 +48,14 @@ class Player:
         if self.playback_thread:
             self.playback_thread.join()
 
-if __name__ == '__main__':
-    p = Player()
-    if p.load('../test.wav'):
-        p.play()
-        input("Press Enter to stop playback...\n")
-        p.stop()
+        if self.blank_track:
+            self.play_blank()
+
+    def play_blank(self):
+        if os.path.exists(self.blank_track):
+            if self.playback_process and self.playback_process.poll() is None:
+                self.playback_process.send_signal(signal.SIGINT)
+                self.playback_process.wait()
+
+            self.playback_process = subprocess.Popen(['aplay', self.blank_track])
+            self.playback_process.wait()
